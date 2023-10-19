@@ -1,2 +1,3 @@
 <%= turbo_stream.prepend "bookmarks", @bookmark %>
 <%= turbo_stream.update Bookmark.new, "" %>
+<%= render_turbo_stream_flash_messages %>

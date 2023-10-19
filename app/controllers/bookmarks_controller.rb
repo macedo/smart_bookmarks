@@ -13,7 +13,7 @@ class BookmarksController < ApplicationController
     if @bookmark.save
       respond_to do |format|
         format.html { redirect_to bookmarks_path, notice: "Bookmark was successfully created." }
-        format.turbo_stream
+        format.turbo_stream { flash.now[:notice] = "Bookmark was successfully created." }
       end
     else
       render :new, status: :unprocessable_entity
@@ -24,7 +24,10 @@ class BookmarksController < ApplicationController
 
   def update
     if @bookmark.update(bookmark_params)
-      redirect_to bookmarks_path, notice: "Bookmark was successfully updated."
+      respond_to do |format|
+        format.html { redirect_to bookmarks_path, notice: "Bookmark was successfully updated." }
+        format.turbo_stream { flash.now[:notice] = "Bookmark was successfully updated." }
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -35,7 +38,7 @@ class BookmarksController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to bookmarks_path, notice: "Bookmark was successfully destroyed." }
-      format.turbo_stream
+      format.turbo_stream { flash.now[:notice] = "Bookmark was successfully destroyed" }
     end
   end
 
