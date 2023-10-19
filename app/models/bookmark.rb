@@ -7,4 +7,6 @@ class Bookmark < ApplicationRecord
     presence: true
 
   scope :ordered, ->{ order(created_at: :desc) }
+
+  broadcasts_to ->(bookmark) { "bookmarks" }, inserts_by: :prepend
 end
