@@ -1,7 +1,7 @@
 class BookmarksController < ApplicationController
   before_action :set_bookmark, only: %i(show edit update destroy)
 
-  def index = @bookmarks = Bookmark.all
+  def index = @bookmarks = Bookmark.ordered
 
   def show; end
 
@@ -11,7 +11,10 @@ class BookmarksController < ApplicationController
     @bookmark = Bookmark.new(bookmark_params)
 
     if @bookmark.save
-      redirect_to bookmarks_path, notice: "Bookmark was successfully created."
+      respond_to do |format|
+        format.html { redirect_to bookmarks_path, notice: "Bookmark was successfully created." }
+        format.turbo_stream
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -29,7 +32,11 @@ class BookmarksController < ApplicationController
 
   def destroy
     @bookmark.destroy
-    redirect_to bookmarks_path, notice: "Bookmark was successfully destroyed."
+
+    respond_to do |format|
+      format.html { redirect_to bookmarks_path, notice: "Bookmark was successfully destroyed." }
+      format.turbo_stream
+    end
   end
 
   private

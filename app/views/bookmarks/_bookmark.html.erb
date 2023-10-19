@@ -1,7 +1,12 @@
-<div class="bookmark">
-  <%= link_to bookmark.name, bookmark_path(bookmark) %>
-  <div class="bookmark__actions">
-    <%= button_to "Delete", bookmark_path(bookmark), method: :delete, class: "btn btn--light" %>
-    <%= link_to "Edit", edit_bookmark_path(bookmark), class: "btn btn--light" %>
+<%= turbo_frame_tag bookmark do %>
+  <div class="bookmark">
+    <%= link_to bookmark.name,
+      bookmark_path(bookmark),
+      data: { turbo_frame: "_top" }
+    %>
+    <div class="bookmark__actions">
+      <%= button_to "Delete", bookmark_path(bookmark), method: :delete, class: "btn btn--light" %>
+      <%= link_to "Edit", edit_bookmark_path(bookmark), class: "btn btn--light" %>
+    </div>
   </div>
-</div>
+<% end %>

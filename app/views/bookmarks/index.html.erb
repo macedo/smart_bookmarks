@@ -1,8 +1,16 @@
 <main class="container">
   <div class="header">
     <h1>Bookmarks</h1>
-    <%= link_to "New Bookmarks", new_bookmark_path, class: "btn btn--primary" %>
+    <%= link_to "New Bookmarks",
+      new_bookmark_path,
+      class: "btn btn--primary",
+      data: { turbo_frame: dom_id(Bookmark.new) }
+    %>
   </div>
 
-  <%= render @bookmarks %>
+  <%= turbo_frame_tag Bookmark.new %>
+
+  <%= turbo_frame_tag "bookmarks" do %>
+    <%= render @bookmarks %>
+  <% end %>
 </main>

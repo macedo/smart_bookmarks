@@ -8,5 +8,6 @@
   <%= f.input :link, input_html: { autofocus: true } %>
   <%= f.input :name %>
 
+  <%= link_to "Cancel", bookmarks_path, class: "btn btn--light" %>
   <%= f.submit class: "btn btn--secondary" %>
 <% end %>

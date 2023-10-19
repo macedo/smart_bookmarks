@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class BookmarksTest < ApplicationSystemTestCase
   setup do
-    @bookmark= bookmarks(:first)
+    @bookmark = Bookmark.ordered.first
   end
 
   test "creating new bookmark" do
@@ -10,10 +10,10 @@ class BookmarksTest < ApplicationSystemTestCase
     assert_selector "h1", text: "Bookmarks"
 
     click_on "New Bookmark"
-    assert_selector "h1", text: "New Bookmark"
-
     fill_in "Name", with: "Rails Guides"
     fill_in "Link", with: "https://guides.rubyonrails.org"
+
+    assert_selector "h1", text: "Bookmarks"
     click_on "Create Bookmark"
 
     assert_selector "h1", text: "Bookmarks"
@@ -32,9 +32,9 @@ class BookmarksTest < ApplicationSystemTestCase
     assert_selector "h1", text: "Bookmarks"
 
     click_on "Edit", match: :first
-    assert_selector "h1", text: "Edit Bookmarks"
-
     fill_in "Name", with: "Updated bookmark name"
+
+    assert_selector "h1", text: "Bookmarks"
     click_on "Update Bookmark"
 
     assert_selector "h1", text: "Bookmarks"
