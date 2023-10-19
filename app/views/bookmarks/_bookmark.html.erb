@@ -1,0 +1,7 @@
+<div class="bookmark">
+  <%= link_to bookmark.name, bookmark_path(bookmark) %>
+  <div class="bookmark__actions">
+    <%= button_to "Delete", bookmark_path(bookmark), method: :delete, class: "btn btn--light" %>
+    <%= link_to "Edit", edit_bookmark_path(bookmark), class: "btn btn--light" %>
+  </div>
+</div>

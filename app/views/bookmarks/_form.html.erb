@@ -1,0 +1,12 @@
+<%= simple_form_for bookmark, html: { class: "bookmark form" } do |f| %>
+  <% if bookmark.errors.any? %>
+    <div class="error-message">
+      <%= bookmark.errors.full_messages.to_sentence.capitalize %>
+    </div>
+  <% end %>
+
+  <%= f.input :link, input_html: { autofocus: true } %>
+  <%= f.input :name %>
+
+  <%= f.submit class: "btn btn--secondary" %>
+<% end %>

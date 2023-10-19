@@ -1,0 +1,11 @@
+first:
+  name: Rails Guides
+  link: https://guides.rubyonrails.org
+
+second:
+  name: Go Doc
+  link: https://go.dev/doc
+
+third:
+  name: Rust Doc
+  link: https://doc.rust-lang.org/rustdoc/what-is-rustdoc.html

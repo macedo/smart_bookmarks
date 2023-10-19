@@ -1,0 +1,8 @@
+<main class="container">
+  <div class="header">
+    <h1>Bookmarks</h1>
+    <%= link_to "New Bookmarks", new_bookmark_path, class: "btn btn--primary" %>
+  </div>
+
+  <%= render @bookmarks %>
+</main>

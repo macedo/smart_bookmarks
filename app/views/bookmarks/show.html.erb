@@ -1,0 +1,9 @@
+<main class="container">
+  <%= link_to sanitize("&larr; Back to bookmarkgs"), bookmarks_path %>
+  <div class="header">
+    <h1>
+      <%= @bookmark.name %>
+    </h1>
+    <p><%= @bookmark.link %></p>
+  </div>
+</main>

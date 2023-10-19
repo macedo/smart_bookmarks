@@ -1,0 +1,9 @@
+<main class="container">
+  <%= link_to sanitize("&larr; Back to bookmark"), bookmark_path(@bookmark) %>
+
+  <div class="header">
+    <h1>Edit Bookmarks</h1>
+  </div>
+
+  <%= render "form", bookmark: @bookmark %>
+</main>
