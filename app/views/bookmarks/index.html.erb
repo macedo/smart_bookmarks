@@ -13,6 +13,7 @@
   <%= turbo_frame_tag Bookmark.new %>
 
   <%= turbo_frame_tag "bookmarks" do %>
+    <%= render "bookmarks/empty_state" %>
     <%= render @bookmarks %>
   <% end %>
 </main>

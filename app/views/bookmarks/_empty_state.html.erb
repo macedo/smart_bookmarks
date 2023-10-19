@@ -1,0 +1,11 @@
+<div class="empty-state empty-state--only-child">
+  <p class="empty-state__text">
+    You don't have any bookmarks yet!
+  </p>
+
+  <%= link_to "Add Bookmark",
+    new_bookmark_path,
+    class: "btn btn--primary",
+    data: { turbo_frame: dom_id(Bookmark.new) }
+  %>
+</div>
