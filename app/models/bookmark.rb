@@ -1,4 +1,6 @@
 class Bookmark < ApplicationRecord
+  belongs_to :user
+
   validates :link,
     presence: true,
     uri: true
@@ -8,5 +10,5 @@ class Bookmark < ApplicationRecord
 
   scope :ordered, ->{ order(created_at: :desc) }
 
-  broadcasts_to ->(bookmark) { "bookmarks" }, inserts_by: :prepend
+  broadcasts_to ->(bookmark) { [bookmark.user, "bookmarks"] }, inserts_by: :prepend
 end

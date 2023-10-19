@@ -2,6 +2,7 @@ require "application_system_test_case"
 
 class BookmarksTest < ApplicationSystemTestCase
   setup do
+    login_as users(:macedo)
     @bookmark = Bookmark.ordered.first
   end
 

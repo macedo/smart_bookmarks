@@ -1,0 +1,10 @@
+<main class="container">
+  <h1>SmartBookmarks</h1>
+  <p>A blazing fast bookmark manager built with Hotwire</p>
+
+  <% if user_signed_in? %>
+    <%= link_to "View Bookmars", bookmarks_path, class: "btn btn--dark" %>
+  <% else %>
+    <%= link_to "Sign in", new_user_session_path, class: "btn btn--dark" %>
+  <% end %>
+</main>

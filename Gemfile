@@ -72,3 +72,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+# Flexible authentication solution for Rails with Warden
+gem "devise", "~> 4.9"

@@ -1,4 +1,4 @@
-<%= turbo_stream_from "bookmarks" %>
+<%= turbo_stream_from current_user, "bookmarks" %>
 
 <main class="container">
   <div class="header">
