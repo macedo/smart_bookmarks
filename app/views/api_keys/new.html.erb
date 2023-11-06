@@ -1,0 +1,11 @@
+<main class="container">
+  <%= link_to sanitize("&larr; Back to API Keys"), api_keys_path %>
+
+  <div class="header">
+    <h1>New API Key</h1>
+  </div>
+
+  <%= turbo_frame_tag @api_key do %>
+    <%= render "form", api_key: @api_key %>
+  <% end %>
+</main>

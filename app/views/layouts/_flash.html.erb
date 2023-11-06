@@ -4,6 +4,6 @@
     data-controller="removals"
     data-action="animationend->removals#remove"
   >
-    <%= message %>
+    <%= sanitize message %>
   </div>
 <% end %>

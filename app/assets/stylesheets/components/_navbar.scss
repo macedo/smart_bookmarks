@@ -12,9 +12,15 @@
     color: var(--color-text-header);
   }
 
-  &__name {
+  &__api_keys {
     font-weight: bold;
     margin-left: auto;
+    margin-right: var(--space-s);
+    color: var(--color-text-header);
+  }
+
+  &__bookmarks {
+    font-weight: bold;
     margin-right: var(--space-s);
     color: var(--color-text-header);
   }

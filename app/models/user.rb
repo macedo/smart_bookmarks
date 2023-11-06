@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :trackable, :validatable
 
+  has_many :api_keys, as: :bearer, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
 
   def username

@@ -3,10 +3,14 @@ en:
     "yes": 'Yes'
     "no": 'No'
     placeholders:
+      api_key:
+        name: Name of your api key
       bookmark:
         link: Link of your bookmark
         name: Name of your bookmark
     labels:
+      api_key:
+        name: Name
       bookmark:
         link: Link
         name: Name
@@ -39,6 +43,8 @@ en:
     #     age: 'Select your age'
   helpers:
     submit:
+      api_key:
+        create: Create API Key
       bookmark:
         create: Create Bookmark
         update: Update Bookmark

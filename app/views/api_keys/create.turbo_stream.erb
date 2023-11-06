@@ -1,0 +1,3 @@
+<%= turbo_stream.append "api_keys", @api_key %>
+<%= turbo_stream.update ApiKey.new, ""%>
+<%= render_turbo_stream_flash_messages %>

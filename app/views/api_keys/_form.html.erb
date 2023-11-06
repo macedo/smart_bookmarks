@@ -1,0 +1,12 @@
+<%= simple_form_for api_key, html: { class: "api_key form" } do |f| %>
+  <% if api_key.errors.any? %>
+    <div class="error-message">
+      <%= api_key.errors.full_messages.to_sentence.capitalize %>
+    </div>
+  <% end %>
+
+  <%= f.input :name, input_html: { autofocus: true } %>
+
+  <%= link_to "Cancel", api_keys_path, class: "btn btn--light" %>
+  <%= f.submit class: "btn btn--secondary" %>
+<% end %>
