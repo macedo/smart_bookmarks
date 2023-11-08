@@ -53,6 +53,15 @@ gem "simple_form"
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
+
+  # Faker, a port of Data::Faker from Perl, is used to easily generate fake data: names, addresses, phone numbers, etc.
+  gem "faker"
+
+  # factory_bot_rails provides integration between factory_bot and rails 5.0 or newer
+  gem "factory_bot_rails"
+
+  # rspec-rails is a testing framework for Rails 5+.
+  gem "rspec-rails", "~> 6.0.0"
 end
 
 group :development do
