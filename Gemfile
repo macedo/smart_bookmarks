@@ -80,6 +80,10 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+
+
+  # Extracting `assigns` and `assert_template` from ActionDispatch.
+  gem "rails-controller-testing"
 end
 
 group :production do

@@ -9,7 +9,7 @@ class ApiKeysController < ApplicationController
     @api_key = current_user.api_keys.create(api_key_params)
 
     if @api_key.save
-      notice = "API Key was successfully created and <b>it will be displayed only now!!<b>"
+      notice = "API Key was successfully created and <b>it will be displayed only now!!</b>"
       respond_to do |format|
         format.html { redirect_to api_keys_path, notice: notice }
         format.turbo_stream { flash.now[:notice] = notice }
