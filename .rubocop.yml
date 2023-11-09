@@ -1,0 +1,21 @@
+require:
+  - standard
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+
+inherit_gem:
+  standard: config/base.yml
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - public/**/*
+    - vendor/**/*
+
+Performance:
+  Enabled: true
+Rails:
+  Enabled: true
+RSpec:
+  Enabled: true

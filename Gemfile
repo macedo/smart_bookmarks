@@ -62,6 +62,23 @@ group :development, :test do
 
   # rspec-rails is a testing framework for Rails 5+.
   gem "rspec-rails", "~> 6.0.0"
+
+   # Ruby Style Guide, with linter & automatic code fixer
+  gem "standard"
+
+  # RuboCop is a Ruby code style checking and code formatting tool. It aims to enforce the
+  # community-driven Ruby Style Guide.
+  gem 'rubocop'
+
+  # A collection of RuboCop cops to check for performance optimizations in Ruby code.
+  gem 'rubocop-performance'
+
+  # Automatic Rails code style checking tool. A RuboCop extension focused on
+  # enforcing Rails best practices and coding conventions.
+  gem 'rubocop-rails'
+
+  # Code style checking for RSpec files. A plugin for the RuboCop code style enforcing & linting tool.
+  gem 'rubocop-rspec'
 end
 
 group :development do
@@ -80,7 +97,6 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
-
 
   # Extracting `assigns` and `assert_template` from ActionDispatch.
   gem "rails-controller-testing"
