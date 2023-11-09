@@ -8,4 +8,7 @@ changelog:
         - bug
     - title: Features
       labels:
+        - enhancement
+    - title: Other Changes
+      labels:
         - "*"
