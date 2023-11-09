@@ -84,6 +84,10 @@ group :test do
 
   # Extracting `assigns` and `assert_template` from ActionDispatch.
   gem "rails-controller-testing"
+
+  # Strategies for cleaning databases using ActiveRecord. Can be used to ensure a
+  # clean state for testing.
+  gem 'database_cleaner-active_record'
 end
 
 group :production do
