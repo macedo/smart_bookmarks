@@ -3,9 +3,7 @@ module Api
     rescue_from ActionController::ParameterMissing, with: :bad_request
 
     skip_before_action :authenticate_user!
-    skip_before_action :verify_authenticity_token
     before_action :authenticate_with_api_key
-
 
     attr_reader :current_bearer, :current_api_key
 
