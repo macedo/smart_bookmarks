@@ -29,3 +29,15 @@
 
 en:
   hello: "Hello world"
+  api_keys:
+    create:
+      notice: "API Key was successfully created and <b>it will be displayed only now!!</b>"
+    destroy:
+      notice: "API Key was successfully destroyed."
+  bookmarks:
+    create:
+      notice: "Bookmark was successfully created."
+    update:
+      notice: "Bookmark was successfully updated."
+    destroy:
+      notice: "Bookmark was successfully destroyed."

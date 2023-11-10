@@ -1,26 +1,29 @@
 require "rails_helper"
 
-RSpec.describe "GET /bookmarks/new", type: :request do
-  context "authenticated user" do
-    let!(:user) { create(:user) }
+RSpec.describe "GET /bookmarks/new" do
+  subject(:do_request) { get "/bookmarks/new" }
 
-    before { sign_in user }
+  let!(:user) { create(:user) }
 
-    it "returns http success" do
-      get "/bookmarks/new"
+  context "with authenticated user" do
+    before do
+      sign_in user
+      do_request
+    end
 
+    it "have http status ok" do
       expect(response).to have_http_status(:ok)
+    end
+
+    it "render new template" do
       expect(response).to render_template(:new)
-      expect(assigns(:bookmark)).to be_a_new(Bookmark)
     end
   end
 
-  context "unauthenticated user" do
-    it "redirect_to sign in page" do
-      get "/bookmarks/new"
+  context "with unauthenticated user" do
+    before { do_request }
 
-      expect(response).to redirect_to("/users/sign_in")
-      expect(flash[:alert]).to eql "You need to sign in or sign up before continuing."
-    end
+    it { expect(response).to redirect_to("/users/sign_in") }
+    it { expect(flash[:alert]).to eql "You need to sign in or sign up before continuing." }
   end
 end

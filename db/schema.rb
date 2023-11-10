@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_05_174753) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_09_180428) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,6 +25,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_05_174753) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["bearer_type", "bearer_id"], name: "index_api_keys_on_bearer"
+    t.index ["random_token_prefix", "bearer_id", "bearer_type"], name: "idx_on_random_token_prefix_bearer_id_bearer_type_83f86ee63a", unique: true
     t.index ["token_digest"], name: "index_api_keys_on_token_digest", unique: true
   end
 
@@ -33,7 +34,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_05_174753) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 

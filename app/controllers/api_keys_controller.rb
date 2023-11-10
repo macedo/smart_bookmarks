@@ -1,5 +1,5 @@
 class ApiKeysController < ApplicationController
-  before_action :set_api_key, only: %i(destroy)
+  before_action :set_api_key, only: %i[destroy]
 
   def index = @api_keys = current_user.api_keys.active
 
@@ -9,25 +9,21 @@ class ApiKeysController < ApplicationController
     @api_key = current_user.api_keys.create(api_key_params)
 
     if @api_key.save
-      notice = "API Key was successfully created and <b>it will be displayed only now!!</b>"
       respond_to do |format|
-        format.html { redirect_to api_keys_path, notice: notice }
-        format.turbo_stream { flash.now[:notice] = notice }
+        format.html { redirect_to api_keys_path, notice: t(".notice") }
+        format.turbo_stream { flash.now[:notice] = t(".notice") }
       end
     else
       render :new, status: :unprocessable_entity
     end
-
   end
 
   def destroy
     @api_key.update!(revoked_at: Time.now.utc)
 
-    notice = "API Key was successfully destroyed."
-
     respond_to do |format|
-      format.html { redirect_to api_keys_path, notice: notice }
-      format.turbo_stream { flash.now[:notice] = notice }
+      format.html { redirect_to api_keys_path, notice: t(".notice") }
+      format.turbo_stream { flash.now[:notice] = t(".notice") }
     end
   end
 

@@ -7,7 +7,7 @@ module Api
         if bookmark.save
           render json: bookmark, status: :created
         else
-          json_response = { errors: bookmark.errors }
+          json_response = {errors: bookmark.errors}
           render json: json_response, status: :unprocessable_entity
         end
       end

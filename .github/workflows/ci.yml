@@ -4,6 +4,22 @@ on:
     branches:
       - main
 jobs:
+  rubocop:
+    name: Rubocop
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+
+      - name: Analyze code
+        uses: bundle exec rubocop
+
   rspec:
     name: RSpec
     runs-on: ubuntu-latest
@@ -62,7 +78,7 @@ jobs:
           yarn build:css
 
       - name: Create database
-        run: bin/rails db:prepare
+        run: bundle exec rails db:prepare
 
       - name: Run tests
         run: bundle exec rspec spec
