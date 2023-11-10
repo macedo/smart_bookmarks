@@ -17,10 +17,10 @@ gem "puma", ">= 5.0"
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails"
 
-# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
+# Hotwire"s SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
 
-# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
+# Hotwire"s modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
@@ -39,7 +39,7 @@ gem "redis", ">= 4.0.1"
 # gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[ windows jruby ]
+gem "tzinfo-data", platforms: %i[windows jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
@@ -52,7 +52,7 @@ gem "simple_form"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri windows ]
+  gem "debug", platforms: %i[mri windows]
 
   # Faker, a port of Data::Faker from Perl, is used to easily generate fake data: names, addresses, phone numbers, etc.
   gem "faker"
@@ -63,22 +63,22 @@ group :development, :test do
   # rspec-rails is a testing framework for Rails 5+.
   gem "rspec-rails", "~> 6.0.0"
 
-   # Ruby Style Guide, with linter & automatic code fixer
+  # Ruby Style Guide, with linter & automatic code fixer
   gem "standard"
 
   # RuboCop is a Ruby code style checking and code formatting tool. It aims to enforce the
   # community-driven Ruby Style Guide.
-  gem 'rubocop'
+  gem "rubocop"
 
   # A collection of RuboCop cops to check for performance optimizations in Ruby code.
-  gem 'rubocop-performance'
+  gem "rubocop-performance"
 
   # Automatic Rails code style checking tool. A RuboCop extension focused on
   # enforcing Rails best practices and coding conventions.
-  gem 'rubocop-rails'
+  gem "rubocop-rails"
 
   # Code style checking for RSpec files. A plugin for the RuboCop code style enforcing & linting tool.
-  gem 'rubocop-rspec'
+  gem "rubocop-rspec"
 end
 
 group :development do
@@ -90,7 +90,6 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
-
 end
 
 group :test do
@@ -103,14 +102,14 @@ group :test do
 
   # Strategies for cleaning databases using ActiveRecord. Can be used to ensure a
   # clean state for testing.
-  gem 'database_cleaner-active_record'
+  gem "database_cleaner-active_record"
 end
 
 group :production do
   # New Relic is a performance management system, developed by New Relic, Inc (http://www.newrelic.com).
   # New Relic provides you with deep information about the performance of your web application as it runs in production.
   # The New Relic Ruby agent is dual-purposed as a either a Gem or plugin, hosted on https://github.com/newrelic/newrelic-ruby-agent/
-  gem 'newrelic_rpm'
+  gem "newrelic_rpm"
 end
 
 # Flexible authentication solution for Rails with Warden

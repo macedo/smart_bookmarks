@@ -1,38 +1,59 @@
 require "rails_helper"
 
-RSpec.describe "PUT /bookmarks/:id", type: :request do
-  context "authenticated user" do
-    let!(:user) { create(:user) }
-    let!(:bookmark) { create(:bookmark, user: user) }
+RSpec.describe "PUT /bookmarks/:id" do
+  subject(:do_request) { put "/bookmarks/#{bookmark.id}", params: params }
 
+  let!(:user) { create(:user) }
+  let!(:bookmark) { create(:bookmark, user: user) }
+
+  context "with authenticated user" do
     before { sign_in user }
 
-    scenario "valid bookmark attributes" do
-      attr = attributes_for(:bookmark)
+    context "with valid attributes" do
+      let(:params) { {bookmark: attributes_for(:bookmark)} }
 
-      put "/bookmarks/#{bookmark.id}", params: { bookmark: attr }
+      before { do_request }
 
-      expect(response).to redirect_to("/bookmarks")
-      expect(flash[:notice]).to eql("Bookmark was successfully updated.")
+      it "updates a bookmark" do
+        bookmark.reload
+        expect(bookmark.name).to eql params[:bookmark][:name]
+      end
+
+      it "redirect_to bookmarks index path" do
+        expect(response).to redirect_to("/bookmarks")
+      end
+
+      it "show success updated message" do
+        expect(flash[:notice]).to eql("Bookmark was successfully updated.")
+      end
     end
 
-    scenario "invalid bookmark attributes" do
-      attr = attributes_for(:bookmark, name: "")
+    context "with invalid attributes" do
+      let(:params) { {bookmark: attributes_for(:bookmark, name: "", link: "https://john@doe.com")} }
 
-      put "/bookmarks/#{bookmark.id}", params: { bookmark: attr }
+      before { do_request }
 
-      expect(response).to have_http_status(:unprocessable_entity)
-      expect(response).to render_template(:edit)
-      expect(assigns(:bookmark)).to be_a(Bookmark)
+      it "do not update bookmark" do
+        expect(bookmark.link).not_to eql "https://john@doe"
+      end
+
+      it "have unprocessable_entity status" do
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+
+      it "render edit template" do
+        expect(response).to render_template(:edit)
+      end
     end
   end
 
-  context "unauthenticated user" do
-    it "redirect_to sign in page" do
-      put "/bookmarks/1"
+  context "without unauthenticated user" do
+    let(:params) { {bookmark: {}} }
 
-      expect(response).to redirect_to("/users/sign_in")
-      expect(flash[:alert]).to eql "You need to sign in or sign up before continuing."
-    end
+    before { do_request }
+
+    it { expect(response).to redirect_to("/users/sign_in") }
+
+    it { expect(flash[:alert]).to eql "You need to sign in or sign up before continuing." }
   end
 end

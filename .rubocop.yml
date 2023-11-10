@@ -1,5 +1,7 @@
 require:
   - standard
+  - rubocop-capybara
+  - rubocop-factory_bot
   - rubocop-performance
   - rubocop-rails
   - rubocop-rspec
@@ -10,6 +12,7 @@ inherit_gem:
 AllCops:
   NewCops: enable
   Exclude:
+    - bin/**/*
     - public/**/*
     - vendor/**/*
 

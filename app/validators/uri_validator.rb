@@ -6,7 +6,9 @@ class UriValidator < ActiveModel::EachValidator
   end
 
   def uri_valid?(uri)
-    uri = URI.parse(uri) rescue false
-    uri.kind_of?(URI::HTTP) || uri.kind_of?(URI::HTTPS)
+    uri = URI.parse(uri)
+    uri.is_a?(URI::HTTP) || uri.is_a?(URI::HTTPS)
+  rescue
+    false
   end
 end

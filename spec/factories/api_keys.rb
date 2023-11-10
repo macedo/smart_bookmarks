@@ -3,11 +3,11 @@ FactoryBot.define do
     sequence(:name) { |n| "api_key_#{n}" }
 
     trait :for_user do
-      association :bearer, factory: :user
+      bearer factory: %i[user]
     end
 
     trait :revoked do
-      revoked_at { Time.now }
+      revoked_at { Time.now.utc }
     end
   end
 end

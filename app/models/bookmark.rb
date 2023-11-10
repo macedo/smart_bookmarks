@@ -8,8 +8,7 @@ class Bookmark < ApplicationRecord
   validates :name,
     presence: true
 
-  scope :ordered, ->{ order(created_at: :desc) }
+  scope :ordered, -> { order(created_at: :desc) }
 
-  broadcasts_to ->(bookmark) { [bookmark.user,  "bookmarks"] }, inserts_by: :append
-
+  broadcasts_to ->(bookmark) { [bookmark.user, "bookmarks"] }, inserts_by: :append
 end
