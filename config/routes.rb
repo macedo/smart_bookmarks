@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  use_doorkeeper
   namespace :api do
     namespace :v1 do
       resource :api_key, only: %i[show]

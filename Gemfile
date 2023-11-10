@@ -114,3 +114,5 @@ end
 
 # Flexible authentication solution for Rails with Warden
 gem "devise", "~> 4.9"
+
+gem "doorkeeper"
