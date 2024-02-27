@@ -14,17 +14,17 @@ RSpec.describe "ApiKeys" do
     describe "show correct data" do
       it { expect(page).to have_text("API Keys") }
       it { expect(page).to have_text(active_key.name) }
-      it { expect(page).not_to have_text(revoked_key.name) }
-      it { expect(page).not_to have_text(other_user_key.name) }
+      it { expect(page).to have_no_text(revoked_key.name) }
+      it { expect(page).to have_no_text(other_user_key.name) }
     end
   end
 
   describe "creates new api key" do
     before do
       visit "/api_keys"
-      click_link "New API Key"
+      click_on "New API Key"
       fill_in "Name", with: name
-      click_button "Create API Key"
+      click_on "Create API Key"
     end
 
     context "with valid attribute" do
@@ -47,6 +47,6 @@ RSpec.describe "ApiKeys" do
       find("#api_key_#{active_key.id}").find_button("Revoke").click
     end
 
-    it { expect(page).not_to have_text(active_key.name) }
+    it { expect(page).to have_no_text(active_key.name) }
   end
 end

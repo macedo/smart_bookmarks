@@ -12,17 +12,17 @@ RSpec.describe "Bookmarks" do
 
     describe "show correct data" do
       it { expect(page).to have_text(bookmark.name) }
-      it { expect(page).not_to have_text(other_user_bookmark.name) }
+      it { expect(page).to have_no_text(other_user_bookmark.name) }
     end
   end
 
   describe "create new bookmark" do
     before do
       visit "/bookmarks"
-      click_link "New Bookmark"
+      click_on "New Bookmark"
       fill_in "Name", with: name
       fill_in "Link", with: "https://uol.com.br"
-      click_button "Create Bookmark"
+      click_on "Create Bookmark"
     end
 
     context "with valid attribute" do
@@ -42,7 +42,7 @@ RSpec.describe "Bookmarks" do
   describe "show bookmark info" do
     before do
       visit "/bookmarks"
-      click_link bookmark.name
+      click_on bookmark.name
     end
 
     it { expect(page).to have_text(bookmark.name) }
@@ -53,14 +53,14 @@ RSpec.describe "Bookmarks" do
       visit "/bookmarks"
       find("#bookmark_#{bookmark.id}").find_link("Edit").click
       fill_in "Name", with: name
-      click_button "Update Bookmark"
+      click_on "Update Bookmark"
     end
 
     context "with valid attribute" do
       let(:name) { "new bookmark name" }
 
       it { expect(page).to have_text(name) }
-      it { expect(page).not_to have_text(bookmark.name) }
+      it { expect(page).to have_no_text(bookmark.name) }
       it { expect(page).to have_text("Bookmark was successfully updated.") }
     end
 
@@ -77,6 +77,6 @@ RSpec.describe "Bookmarks" do
       find("#bookmark_#{bookmark.id}").find_button("Delete").click
     end
 
-    it { expect(page).not_to have_text(bookmark.name) }
+    it { expect(page).to have_no_text(bookmark.name) }
   end
 end
