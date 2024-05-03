@@ -1,30 +1,11 @@
 module Api
-  class BaseController < ApplicationController
-    rescue_from ActionController::ParameterMissing, with: :bad_request
+  class BaseController < ActionController::API
+    before_action :doorkeeper_authorize!
 
-    skip_before_action :authenticate_user!
-    before_action :authenticate_with_api_key
+    private
 
-    attr_reader :current_bearer, :current_api_key
-
-    protected
-
-    def authenticate_with_api_key
-      authenticate_or_request_with_http_token do |token, opts|
-        @current_api_key = ApiKey.find_by(token_digest: ApiKey.generate_digest(token))
-        @current_bearer = @current_api_key&.bearer
-      end
-    end
-
-    def bad_request
-      json_response = {errors: ["Bad request"]}
-      render json: json_response, status: :bad_request
-    end
-
-    def request_http_token_authentication(realm = "Application", message = nil)
-      json_response = {errors: [message || "Access denied"]}
-      headers["WWW-Authenticate"] = %(Bearer realm="#{realm.tr('"', "")}")
-      render json: json_response, status: :unauthorized
+    def current_user
+      @current_user ||= User.find_by(id: doorkeeper_token[:resource_owner_id])
     end
   end
 end

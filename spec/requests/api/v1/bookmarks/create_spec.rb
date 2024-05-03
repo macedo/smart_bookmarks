@@ -5,12 +5,14 @@ RSpec.describe "POST /api/v1/bookmarks" do
 
   let(:headers) {
     {
-      "Authorization" => "Bearer #{api_key.raw_token}"
+      "Authorization" => "Bearer #{access_token.token}"
     }
   }
 
   context "with authenticated user" do
-    let(:api_key) { create(:api_key, :for_user) }
+    let(:application) { create(:application) }
+    let(:user) { create(:user) }
+    let(:access_token) { create(:access_token, application: application, resource_owner_id: user.id) }
 
     context "with valid bookmark attributes" do
       let(:params) { {bookmark: attributes_for(:bookmark)} }
@@ -65,16 +67,8 @@ RSpec.describe "POST /api/v1/bookmarks" do
 
     before { do_request }
 
-    it "have application/json content type" do
-      expect(response.content_type).to eq("application/json; charset=utf-8")
-    end
-
     it "have http status unauthorized" do
       expect(response).to have_http_status(:unauthorized)
-    end
-
-    it "have corret error message" do
-      expect(response.parsed_body[:errors]).to eql ["Access denied"]
     end
   end
 end
