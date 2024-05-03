@@ -1,8 +1,13 @@
 module Api
   module V1
     class BookmarksController < BaseController
+      def index
+        bookmarks = current_user.bookmarks
+        render json: {bookmarks: bookmarks}, status: :ok
+      end
+
       def create
-        bookmark = current_bearer.bookmarks.build(bookmark_params)
+        bookmark = current_user.bookmarks.build(bookmark_params)
 
         if bookmark.save
           render json: bookmark, status: :created

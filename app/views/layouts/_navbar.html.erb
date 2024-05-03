@@ -1,8 +1,5 @@
 <header class="navbar">
   <% if user_signed_in? %>
-    <div class="navbar__api_keys">
-      <%= link_to "API Keys", api_keys_path %>
-    </div>
     <div class="navbar__bookmarks">
       <%= link_to "Bookmarks", bookmarks_path %>
     </div>

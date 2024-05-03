@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+  use_doorkeeper do
+    skip_controllers :authorizations, :authorized_applications
+  end
+
   namespace :api do
     namespace :v1 do
-      resource :api_key, only: %i[show]
-      resources :bookmarks, only: %i[create]
+      resources :bookmarks, only: %i[index create]
     end
   end
 
@@ -13,7 +16,6 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", "as" => "rails_health_check"
 
-  resources :api_keys, except: %i[edit update show]
   resources :bookmarks
 
   # Defines the root path route ("/")

@@ -6,8 +6,14 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :trackable, :validatable
 
-  has_many :api_keys, as: :bearer, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
+
+  class << self
+    def authenticate(email, password)
+      user = User.find_for_authentication(email: email)
+      user&.valid_password?(password) ? user : nil
+    end
+  end
 
   def username
     email.split("@").first

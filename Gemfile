@@ -114,3 +114,6 @@ end
 
 # Flexible authentication solution for Rails with Warden
 gem "devise", "~> 4.9"
+
+# Doorkeeper is an OAuth 2 provider for Rails and Grape.
+gem "doorkeeper", "~> 5.6", ">= 5.6.9"
